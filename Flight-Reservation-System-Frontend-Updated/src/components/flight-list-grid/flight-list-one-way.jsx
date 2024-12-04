@@ -107,7 +107,8 @@ const FlightListOneWay = (props) => {
     setArrivalTime(flightDetail.arrivalTime);
     setArrivalDate(flightDetail.arrivalDate);
     if (!userInfoSession) {
-      login();
+        //login();
+      history.push("/loginpage")
     } else {
       const selectFlightData = await SeatBookingServices.selectFlight(
         userInfoSession.userId,

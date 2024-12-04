@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { AppBar, Tabs, Tab, Typography, Toolbar, Button, Menu, MenuItem } from "@material-ui/core";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import "./header.css";
 import { useGoogleLogin } from "@react-oauth/google";
 import GoogleServiceSingleton from "../../services/google-service-singleton";
 import {useUserInfoSession} from "./user-context";
+
 
 const Header = ({ tabs, onShowTab }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,11 +38,18 @@ const Header = ({ tabs, onShowTab }) => {
     },
   });
 
-  const handleLogout = () => {
-    removeUserInfoSession();
-    setIsLoggedIn(false);
-    history.push("/");
-  };
+   const handleLogout = () => {
+     // Clear session and user information
+     removeUserInfoSession();
+     setIsLoggedIn(false);
+     setUserInfo(null);
+
+     // Clear any flight search data (if stored in localStorage)
+     localStorage.removeItem("flightSearchData"); // Clears flight search data stored in localStorage
+
+     // Redirect to the homepage or login page
+     history.push("/");
+   };
 
   const handleManage = () => {
     history.push("/manage");
@@ -173,7 +182,8 @@ const Header = ({ tabs, onShowTab }) => {
         ) : (
           <Button
             style={{ backgroundColor: "black", color: "white" }}
-            onClick={() => login()}
+            component={Link}
+            to="/loginpage"
           >
             Login/Sign Up
           </Button>

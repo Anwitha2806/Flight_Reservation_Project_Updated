@@ -13,12 +13,12 @@ import {
   Typography,
   Paper,
 } from "@material-ui/core";
-
 import { Autocomplete } from "@material-ui/lab";
 import { validateSearch } from "../../services/global-services";
 import actions from "../../constants/actions";
 import FlightListOneWay from "../../components/flight-list-grid/flight-list-one-way";
 import CityJSON from "../../mocks/cities.json";
+import { useUserInfoSession } from "../../components/header/user-context";
 
 const cities = [...CityJSON];
 
@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     background: "rgba(0, 0, 0, 0.87)",
     borderRadius: 8,
   },
-  
   centerContainer: {
     display: "flex",
     flexDirection: "column",
@@ -55,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const FlightSearch = (props) => {
   const [source, setSource] = useState(null);
   const [dest, setDest] = useState(null);
@@ -68,25 +66,61 @@ const FlightSearch = (props) => {
   const history = useHistory();
   const flightList = useSelector((state) => state.flightSearch.searchList);
   const classes = useStyles();
+  const { userInfo } = useUserInfoSession();
 
   // On Page Load
   useEffect(() => {
-    // Reset Flight List
-    dispatch({
-      type: actions.RESET_FLIGHT_LIST,
-    });
+    // Check if data is stored in localStorage and load it
+    const savedData = JSON.parse(localStorage.getItem("flightSearchData"));
+    if (savedData) {
+      setSource(savedData.source);
+      setDest(savedData.dest);
+      setDeptDate(savedData.deptDate);
+      setReturnDate(savedData.returnDate);
+      setSelectTrip(savedData.selectTrip);
+    }
+
+//     // Reset Flight List
+//     dispatch({
+//       type: actions.RESET_FLIGHT_LIST,
+//     });
   }, []);
 
+
+  // Handle field changes
   const handleSelectTrip = (e) => {
-    setSelectTrip(e.target.value);
+    const value = e.target.value;
+    setSelectTrip(value);
+    saveToLocalStorage({ selectTrip: value });
   };
 
   const handleDeparture = (e) => {
-    setDeptDate(e.target.value);
+    const value = e.target.value;
+    setDeptDate(value);
+    saveToLocalStorage({ deptDate: value });
   };
 
   const handleReturn = (e) => {
-    setReturnDate(e.target.value);
+    const value = e.target.value;
+    setReturnDate(value);
+    saveToLocalStorage({ returnDate: value });
+  };
+
+  const handleSourceChange = (newValue) => {
+    setSource(newValue);
+    saveToLocalStorage({ source: newValue });
+  };
+
+  const handleDestChange = (newValue) => {
+    setDest(newValue);
+    saveToLocalStorage({ dest: newValue });
+  };
+
+  // Save flight search data to localStorage
+  const saveToLocalStorage = (updatedFields) => {
+    const currentData = JSON.parse(localStorage.getItem("flightSearchData")) || {};
+    const updatedData = { ...currentData, ...updatedFields };
+    localStorage.setItem("flightSearchData", JSON.stringify(updatedData));
   };
 
   const handleSearchFlight = () => {
@@ -155,7 +189,19 @@ const FlightSearch = (props) => {
     setDest(null);
     setDeptDate("");
     setReturnDate("");
+    localStorage.removeItem("flightSearchData"); // Clear from localStorage
   };
+
+    // Function to handle sign-out
+    const handleSignOut = () => {
+      // Clear the user session data
+      setUserInfo(null); // Assuming `setUserInfo` clears the session
+      localStorage.removeItem("flightSearchData"); // Clear flight search data from localStorage
+      handleClearFields(); // Reset all fields
+
+
+      history.push("/loginpage"); // Redirect to login page after sign-out
+    };
 
   return (
     <Paper elevation={0} className={classes.paper}>
@@ -174,9 +220,7 @@ const FlightSearch = (props) => {
         </RadioGroup>
         <Autocomplete
           value={source}
-          onChange={(event, newValue) => {
-            setSource(newValue);
-          }}
+          onChange={(event, newValue) => handleSourceChange(newValue)}
           getOptionLabel={(option) => option.name}
           options={filteredSources}
           style={{ width: 300, padding: "8px" }}
@@ -186,9 +230,7 @@ const FlightSearch = (props) => {
         />
         <Autocomplete
           value={dest}
-          onChange={(event, newValue) => {
-            setDest(newValue);
-          }}
+          onChange={(event, newValue) => handleDestChange(newValue)}
           getOptionLabel={(option) => option.name}
           options={filteredDestinations}
           style={{ width: 300, padding: "8px" }}
