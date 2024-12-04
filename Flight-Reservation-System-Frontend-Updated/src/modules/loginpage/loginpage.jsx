@@ -68,7 +68,7 @@ const LoginSignup = () => {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Welcome to BonVoyage</h2>
+        <h2>Welcome to Skylink Airways</h2>
         <h3>Please Sign In or Sign Up</h3>
         <form onSubmit={handleFormSubmit}>
           <div className="input-group">

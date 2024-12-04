@@ -1,0 +1,195 @@
+drop database flight_reservation_api;
+
+create database flight_reservation_api;
+use  flight_reservation_api;
+select * from flight_details;
+select * from seat;
+select * from passenger;
+select * from passenger_flight_details;
+
+describe flight_details;
+describe seat;
+describe passenger_flight_details;
+describe passenger_payment;
+describe payment;
+describe reservation;
+describe passenger;
+
+select * from reservation;
+
+show tables;
+
+drop table flight_details;
+
+select * from flight_details;
+
+insert into flight_details values('BV-727', 'Mumbai','2024-12-07', '10:50:00', 'New Delhi', '2024-12-06','08:40:00',30);
+insert into flight_details values('BV-728', 'Mumbai','2024-12-05', '13:40:00', 'New Delhi', '2024-12-04','11:30:00',30);
+insert into flight_details values('BV-729', 'Mumbai','2024-11-06', '16:30:00', 'New Delhi', '2024-12-05','14:20:00',30);
+insert into flight_details values('BV-730', 'Mumbai','2024-12-05', '19:10:00', 'New Delhi', '2024-12-04','17:00:00',30);
+
+
+insert into flight_details values('BV-731', 'Chennai','2024-12-06', '10:25:00', 'New Delhi', '2024-12-05','07:25:00',30);
+insert into flight_details values('BV-732', 'Chennai','2024-12-07', '14:00:00', 'New Delhi', '2024-12-06','11:00:00',30);
+insert into flight_details values('BV-733', 'Chennai','2024-12-08', '17:35:00', 'New Delhi', '2024-12-07','14:35:00',30);
+insert into flight_details values('BV-734', 'Chennai','2024-12-09', '21:10:00', 'New Delhi', '2024-12-05','18:10:00',30);
+insert into flight_details values('BV-735', 'Chennai','2024-12-08', '01:45:00', 'New Delhi', '2024-12-07','21:45:00',30);
+
+
+
+insert into seat values('F1', 0, 7000, 'first', 'BV-727', NULL);
+insert into seat values('F2', 0, 7000, 'first', 'BV-727', NULL);
+insert into seat values('F3', 0, 7000, 'first', 'BV-727', NULL);
+insert into seat values('B1', 0, 5000, 'business', 'BV-727', NULL);
+insert into seat values('B2', 0, 5000, 'business', 'BV-727', NULL);
+insert into seat values('B3', 0, 5000, 'business', 'BV-727', NULL);
+insert into seat values('E1', 0, 2000, 'economy', 'BV-727', NULL);
+insert into seat values('E2', 0, 2000, 'economy', 'BV-727', NULL);
+insert into seat values('E3', 0, 2000, 'economy', 'BV-727', NULL);
+insert into seat values('E4', 0, 2000, 'economy', 'BV-727', NULL);
+insert into seat values('E5', 0, 2000, 'economy', 'BV-727', NULL);
+insert into seat values('E6', 0, 2000, 'economy', 'BV-727', NULL);
+insert into seat values('E7', 0, 2000, 'economy', 'BV-727', NULL);
+insert into seat values('E8', 0, 2000, 'economy', 'BV-727', NULL);
+insert into seat values('E9', 0, 2000, 'economy', 'BV-727', NULL);
+
+insert into seat values('F1', 0, 7000, 'first', 'BV-728', NULL);
+insert into seat values('F2', 0, 7000, 'first', 'BV-728', NULL);
+insert into seat values('F3', 0, 7000, 'first', 'BV-728', NULL);
+insert into seat values('B1', 0, 5000, 'business', 'BV-728', NULL);
+insert into seat values('B2', 0, 5000, 'business', 'BV-728', NULL);
+insert into seat values('B3', 0, 5000, 'business', 'BV-728', NULL);
+insert into seat values('E1', 0, 2000, 'economy', 'BV-728', NULL);
+insert into seat values('E2', 0, 2000, 'economy', 'BV-728', NULL);
+insert into seat values('E3', 0, 2000, 'economy', 'BV-728', NULL);
+insert into seat values('E4', 0, 2000, 'economy', 'BV-728', NULL);
+insert into seat values('E5', 0, 2000, 'economy', 'BV-728', NULL);
+insert into seat values('E6', 0, 2000, 'economy', 'BV-728', NULL);
+insert into seat values('E7', 0, 2000, 'economy', 'BV-728', NULL);
+insert into seat values('E8', 0, 2000, 'economy', 'BV-728', NULL);
+insert into seat values('E9', 0, 2000, 'economy', 'BV-728', NULL);
+
+insert into seat values('F1', 0, 7000, 'first', 'BV-729', NULL);
+insert into seat values('F2', 0, 7000, 'first', 'BV-729', NULL);
+insert into seat values('F3', 0, 7000, 'first', 'BV-729', NULL);
+insert into seat values('B1', 0, 5000, 'business', 'BV-729', NULL);
+insert into seat values('B2', 0, 5000, 'business', 'BV-729', NULL);
+insert into seat values('B3', 0, 5000, 'business', 'BV-729', NULL);
+insert into seat values('E1', 0, 2000, 'economy', 'BV-729', NULL);
+insert into seat values('E2', 0, 2000, 'economy', 'BV-729', NULL);
+insert into seat values('E3', 0, 2000, 'economy', 'BV-729', NULL);
+insert into seat values('E4', 0, 2000, 'economy', 'BV-729', NULL);
+insert into seat values('E5', 0, 2000, 'economy', 'BV-729', NULL);
+insert into seat values('E6', 0, 2000, 'economy', 'BV-729', NULL);
+insert into seat values('E7', 0, 2000, 'economy', 'BV-729', NULL);
+insert into seat values('E8', 0, 2000, 'economy', 'BV-729', NULL);
+insert into seat values('E9', 0, 2000, 'economy', 'BV-729', NULL);
+
+insert into seat values('F1', 0, 7000, 'first', 'BV-730', NULL);
+insert into seat values('F2', 0, 7000, 'first', 'BV-730', NULL);
+insert into seat values('F3', 0, 7000, 'first', 'BV-730', NULL);
+insert into seat values('B1', 0, 5000, 'business', 'BV-730', NULL);
+insert into seat values('B2', 0, 5000, 'business', 'BV-730', NULL);
+insert into seat values('B3', 0, 5000, 'business', 'BV-730', NULL);
+insert into seat values('E1', 0, 2000, 'economy', 'BV-730', NULL);
+insert into seat values('E2', 0, 2000, 'economy', 'BV-730', NULL);
+insert into seat values('E3', 0, 2000, 'economy', 'BV-730', NULL);
+insert into seat values('E4', 0, 2000, 'economy', 'BV-730', NULL);
+insert into seat values('E5', 0, 2000, 'economy', 'BV-730', NULL);
+insert into seat values('E6', 0, 2000, 'economy', 'BV-730', NULL);
+insert into seat values('E7', 0, 2000, 'economy', 'BV-730', NULL);
+insert into seat values('E8', 0, 2000, 'economy', 'BV-730', NULL);
+insert into seat values('E9', 0, 2000, 'economy', 'BV-730', NULL);
+
+insert into seat values('F1', 0, 7000, 'first', 'BV-731', NULL);
+insert into seat values('F2', 0, 7000, 'first', 'BV-731', NULL);
+insert into seat values('F3', 0, 7000, 'first', 'BV-731', NULL);
+insert into seat values('B1', 0, 5000, 'business', 'BV-731', NULL);
+insert into seat values('B2', 0, 5000, 'business', 'BV-731', NULL);
+insert into seat values('B3', 0, 5000, 'business', 'BV-731', NULL);
+insert into seat values('E1', 0, 2000, 'economy', 'BV-731', NULL);
+insert into seat values('E2', 0, 2000, 'economy', 'BV-731', NULL);
+insert into seat values('E3', 0, 2000, 'economy', 'BV-731', NULL);
+insert into seat values('E4', 0, 2000, 'economy', 'BV-731', NULL);
+insert into seat values('E5', 0, 2000, 'economy', 'BV-731', NULL);
+insert into seat values('E6', 0, 2000, 'economy', 'BV-731', NULL);
+insert into seat values('E7', 0, 2000, 'economy', 'BV-731', NULL);
+insert into seat values('E8', 0, 2000, 'economy', 'BV-731', NULL);
+insert into seat values('E9', 0, 2000, 'economy', 'BV-731', NULL);
+
+insert into seat values('F1', 0, 7000, 'first', 'BV-732', NULL);
+insert into seat values('F2', 0, 7000, 'first', 'BV-732', NULL);
+insert into seat values('F3', 0, 7000, 'first', 'BV-732', NULL);
+insert into seat values('B1', 0, 5000, 'business', 'BV-732', NULL);
+insert into seat values('B2', 0, 5000, 'business', 'BV-732', NULL);
+insert into seat values('B3', 0, 5000, 'business', 'BV-732', NULL);
+insert into seat values('E1', 0, 2000, 'economy', 'BV-732', NULL);
+insert into seat values('E2', 0, 2000, 'economy', 'BV-732', NULL);
+insert into seat values('E3', 0, 2000, 'economy', 'BV-732', NULL);
+insert into seat values('E4', 0, 2000, 'economy', 'BV-732', NULL);
+insert into seat values('E5', 0, 2000, 'economy', 'BV-732', NULL);
+insert into seat values('E6', 0, 2000, 'economy', 'BV-732', NULL);
+insert into seat values('E7', 0, 2000, 'economy', 'BV-732', NULL);
+insert into seat values('E8', 0, 2000, 'economy', 'BV-732', NULL);
+insert into seat values('E9', 0, 2000, 'economy', 'BV-732', NULL);
+
+insert into seat values('F1', 0, 7000, 'first', 'BV-733', NULL);
+insert into seat values('F2', 0, 7000, 'first', 'BV-733', NULL);
+insert into seat values('F3', 0, 7000, 'first', 'BV-733', NULL);
+insert into seat values('B1', 0, 5000, 'business', 'BV-733', NULL);
+insert into seat values('B2', 0, 5000, 'business', 'BV-733', NULL);
+insert into seat values('B3', 0, 5000, 'business', 'BV-733', NULL);
+insert into seat values('E1', 0, 2000, 'economy', 'BV-733', NULL);
+insert into seat values('E2', 0, 2000, 'economy', 'BV-733', NULL);
+insert into seat values('E3', 0, 2000, 'economy', 'BV-733', NULL);
+insert into seat values('E4', 0, 2000, 'economy', 'BV-733', NULL);
+insert into seat values('E5', 0, 2000, 'economy', 'BV-733', NULL);
+insert into seat values('E6', 0, 2000, 'economy', 'BV-733', NULL);
+insert into seat values('E7', 0, 2000, 'economy', 'BV-733', NULL);
+insert into seat values('E8', 0, 2000, 'economy', 'BV-733', NULL);
+insert into seat values('E9', 0, 2000, 'economy', 'BV-733', NULL);
+
+insert into seat values('F1', 0, 7000, 'first', 'BV-734', NULL);
+insert into seat values('F2', 0, 7000, 'first', 'BV-734', NULL);
+insert into seat values('F3', 0, 7000, 'first', 'BV-734', NULL);
+insert into seat values('B1', 0, 5000, 'business', 'BV-734', NULL);
+insert into seat values('B2', 0, 5000, 'business', 'BV-734', NULL);
+insert into seat values('B3', 0, 5000, 'business', 'BV-734', NULL);
+insert into seat values('E1', 0, 2000, 'economy', 'BV-734', NULL);
+insert into seat values('E2', 0, 2000, 'economy', 'BV-734', NULL);
+insert into seat values('E3', 0, 2000, 'economy', 'BV-734', NULL);
+insert into seat values('E4', 0, 2000, 'economy', 'BV-734', NULL);
+insert into seat values('E5', 0, 2000, 'economy', 'BV-734', NULL);
+insert into seat values('E6', 0, 2000, 'economy', 'BV-734', NULL);
+insert into seat values('E7', 0, 2000, 'economy', 'BV-734', NULL);
+insert into seat values('E8', 0, 2000, 'economy', 'BV-734', NULL);
+insert into seat values('E9', 0, 2000, 'economy', 'BV-734', NULL);
+
+insert into seat values('F1', 0, 7000, 'first', 'BV-735', NULL);
+insert into seat values('F2', 0, 7000, 'first', 'BV-735', NULL);
+insert into seat values('F3', 0, 7000, 'first', 'BV-735', NULL);
+insert into seat values('B1', 0, 5000, 'business', 'BV-735', NULL);
+insert into seat values('B2', 0, 5000, 'business', 'BV-735', NULL);
+insert into seat values('B3', 0, 5000, 'business', 'BV-735', NULL);
+insert into seat values('E1', 0, 2000, 'economy', 'BV-735', NULL);
+insert into seat values('E2', 0, 2000, 'economy', 'BV-735', NULL);
+insert into seat values('E3', 0, 2000, 'economy', 'BV-735', NULL);
+insert into seat values('E4', 0, 2000, 'economy', 'BV-735', NULL);
+insert into seat values('E5', 0, 2000, 'economy', 'BV-735', NULL);
+insert into seat values('E6', 0, 2000, 'economy', 'BV-735', NULL);
+insert into seat values('E7', 0, 2000, 'economy', 'BV-735', NULL);
+insert into seat values('E8', 0, 2000, 'economy', 'BV-735', NULL);
+insert into seat values('E9', 0, 2000, 'economy', 'BV-735', NULL);
+
+
+insert into flight_details values('BV-767', 'New Delhi','2023-12-01 02:30:00', 'Kochi', '2023-11-30','22:00:00',30);
+
+
+select * from flight_details;
+
+show tables;
+insert into passenger values('2000','0','john.doe@example.com','Rita','Dsouza');
+select * from passenger;
+
+select * from fli
+

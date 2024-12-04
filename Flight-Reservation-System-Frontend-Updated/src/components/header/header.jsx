@@ -148,7 +148,7 @@ const Header = ({ tabs, onShowTab }) => {
         </a>
 
         <Typography variant="h6" style={{ marginRight: "50px" }}>
-          {`BonVoyage`}
+          {`Skylink`}
         </Typography>
         <Tabs
           value={currentTab}
